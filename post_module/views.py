@@ -14,7 +14,6 @@ class Index(ListView):
     model = Post
     template_name = 'index.html'
     ordering = ['-post_date']
-    # ordering = ['-id']
 
 class Article(DetailView):
     model = Post
@@ -54,6 +53,11 @@ def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse('article', args=[str(pk)]))
+
+def IndexLikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('index'))
 
 def login(request):
     return render(request, 'login.html', {})

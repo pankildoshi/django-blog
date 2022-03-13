@@ -25,10 +25,13 @@
 									{{post.content|safe}}
 								</div>								
 								<footer>
-									<ul class="stats">
+									<ul class="stats" style="margin-top: 30px;">
 										<form action="{% url 'like_post' post.pk %}" method="post">
 											{% csrf_token %}
-											<button type="submit" name="post_id" value="{{ post.id }}" class="button icon solid fa-heart">{{ total_likes }}</button> 
+											<button type="submit" name="post_id" value="{{ post.id }}" class="button">
+												<i class=" icon solid fa-heart" style="margin: 2px; color: 2ebaae;"></i> 
+												{{ total_likes }}
+											</button> 
 										</form>
 										<!-- <li><a href="#" class="icon solid fa-heart">28</a></li>
 										<li><a href="#" class="icon solid fa-comment">128</a></li> -->

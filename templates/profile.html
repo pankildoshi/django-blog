@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>{{post.title}}</td>
                                     <td>{{post.post_date}}</td>
-                                    <td>28</td>
+                                    <td>{{ post.likes.all.count }}</td>
                                     <td>127</td>
                                     <td>
                                         <a href="{% url 'update_post' post.pk %}" class="button small">Update</a>

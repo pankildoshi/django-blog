@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	BLOG | {{post.title}}
+{% endblock %}
+
+{% block content %}
+				<!-- Main -->
+					<div id="main">
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">{{post.title}}</a></h2>
+										<p>{{post.headline}}</p>
+									</div>
+									<div class="meta">
+										<time class="published">{{post.post_date}}</time>
+										<a href="#" class="author"><span class="name">{{post.author}}</span><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
+									</div>
+								</header>
+								<span class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></span>
+								<div align="justify">
+									{{post.content|safe}}
+								</div>								
+								<footer>
+									<ul class="stats">
+										<form action="{% url 'like_post' post.pk %}" method="post">
+											{% csrf_token %}
+											<button type="submit" name="post_id" value="{{ post.id }}" class="button icon solid fa-heart">{{ total_likes }}</button> 
+										</form>
+										<!-- <li><a href="#" class="icon solid fa-heart">28</a></li>
+										<li><a href="#" class="icon solid fa-comment">128</a></li> -->
+									</ul>
+								</footer>
+							</article>
+							
+						<!-- Footer -->
+							<section id="footer" align="center">
+								<ul class="icons">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+									<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+								<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+							</section>
+					</div>
+{% endblock %}

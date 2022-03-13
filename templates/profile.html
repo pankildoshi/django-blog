@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	PROFILE | {{user.username}}
+{% endblock %}
+
+{% block content %}
+        <div id="main">
+			<section id="intro">
+				<a href="#" class="logo"><img src="{% static 'images/logo.jpg' %}" alt="" /></a>
+				<h3>{{user.username}}</h3>
+				<ul class="alt">
+					<li>Username : {{user.username}}</li>
+					<li>Email : {{user.email}}</li>
+				</ul>
+			</section>
+            <h3>Your Posts</h3>
+			<div class="table-wrapper">
+			<table>
+				<thead>
+					<tr>
+                        <th>Post title</th>
+                        <th>Date</th>
+                        <th>#Likes</th>
+                        <th>#Comments</th>
+                        <th>Actions</th>
+					</tr>
+				</thead>
+					<tbody>
+                        {% if request.user.is_authenticated %}
+                            {% for post in object_list %}
+                                {% if user.id == post.author.id %}
+                                <tr>
+                                    <td>{{post.title}}</td>
+                                    <td>{{post.post_date}}</td>
+                                    <td>28</td>
+                                    <td>127</td>
+                                    <td>
+                                        <a href="{% url 'update_post' post.pk %}" class="button small">Update</a>
+                                        <a href="{% url 'delete_post' post.pk %}" class="button small">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+					</tbody>
+				</table>
+             </div>
+        </div>
+{% endblock %}

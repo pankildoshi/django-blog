@@ -18,7 +18,7 @@
 									</div>
 									<div class="meta">
 										<time class="published">{{post.post_date}}</time>
-										<a href="#" class="author"><span class="name">{{post.author}}</span><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
+										<a href="#" class="author"><span class="name">{{post.author.first_name}} {{post.author.last_name}}</span><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
 									</div>
 								</header>
 								<a href="#" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>

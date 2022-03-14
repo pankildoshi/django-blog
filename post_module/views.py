@@ -1,5 +1,3 @@
-from dataclasses import fields
-from re import template
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from .forms import PostForm
@@ -29,7 +27,7 @@ class Article(DetailView):
 class AddPost(CreateView):
     model = Post
     template_name = 'add_post.html'
-    fields = '__all__'
+    fields = ['title', 'headline', 'content', 'author']
     # form_class = PostForm
 
 class UpdatePost(UpdateView):

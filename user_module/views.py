@@ -24,7 +24,7 @@ def login(request):
 				print('User Created')
 		else:
 			print("Password Not Matching")
-		return redirect('/')
+		return redirect('login')
 	else:
 		return render(request,'login.html')
 
@@ -39,9 +39,9 @@ def validateUser(request):
 			return redirect("/")
 		else:
 			messages.error(request,"Invalid Credentials")
-			return redirect('userLogin')
+			return redirect('login')
 	else:
-		return render(request,"validateUser.html")
+		return render(request,"login.html")
 
 def logout_view(request):
     logout(request)

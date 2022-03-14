@@ -3,7 +3,7 @@
 <head>
 	<title>Login</title>
 	<style>
-		@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+	@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 	* {
 		box-sizing: border-box;
@@ -191,11 +191,10 @@
 			
 			<form action="validateUser" method="POST" class="login">
 				<center style="color:red;">
-
 				{% for msg in messages %}
 				<h5>{{msg}}</h5>
 				{% endfor %}
-			</center>
+				</center>
 				{% csrf_token %}
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>

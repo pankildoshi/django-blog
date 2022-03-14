@@ -35,6 +35,28 @@
 										</form>
 										<!-- <li><a href="#" class="icon solid fa-heart">28</a></li>
 										<li><a href="#" class="icon solid fa-comment">128</a></li> -->
+										<section class="comments">
+											<h2>Comments</h2>
+											<form action="">
+												<div class="row gtr-uniform">
+													<div class="col-9 col-12-xsmall">
+														<input type="text" id="demo-name"placeholder="Comment..." />
+													</div>
+													<div class="col-3 col-12-xsmall">
+														<input type="submit" id="demo-email" value="Add Comment"/>
+													</div>
+												</div>
+											</form>
+											{% if not post.comments.all %}
+												No comments
+											{% else %}
+												{% for comment in post.comments.all %}
+													<strong>{{comment.name}} </strong> - {{comment.date_added}}
+													<br>
+													{{comment.body}}
+												{% endfor %}
+											{% endif %}
+										</section>
 									</ul>
 								</footer>
 							</article>

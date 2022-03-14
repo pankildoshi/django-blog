@@ -6,7 +6,7 @@ from datetime import date, datetime
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    headline = models.CharField(max_length=200, default="Headline")
+    headline = models.CharField(max_length=200, default='Headline')
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now_add=True)
@@ -20,3 +20,12 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('index')
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.name)

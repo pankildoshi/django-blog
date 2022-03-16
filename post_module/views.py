@@ -1,12 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-
-# def index(request):
-#     return render(request, 'index.html', {})
 
 class Index(ListView):
     model = Post
@@ -27,8 +24,17 @@ class Article(DetailView):
 class AddPost(CreateView):
     model = Post
     template_name = 'add_post.html'
-    fields = ['title', 'headline', 'content', 'author']
+    fields = [
+        'title', 'headline', 'content', 'author'
+    ]
     # form_class = PostForm
+
+class AddComment(CreateView):
+    model = Comment
+    template_name = 'article.html'
+    fields = [
+        'post', 'name', 'body'
+    ]
 
 class UpdatePost(UpdateView):
     model = Post

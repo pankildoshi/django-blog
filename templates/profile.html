@@ -34,10 +34,10 @@
                             {% for post in object_list %}
                                 {% if user.id == post.author.id %}
                                 <tr>
-                                    <td>{{post.title}}</td>
+                                    <td><a href="{% url 'article' post.pk %}">{{post.title}}</a></td>
                                     <td>{{post.post_date}}</td>
                                     <td>{{ post.likes.all.count }}</td>
-                                    <td>127</td>
+                                    <td>{{ post.comments.all.count }}</td>
                                     <td>
                                         <a href="{% url 'update_post' post.pk %}" class="button small">Update</a>
                                         <a href="{% url 'delete_post' post.pk %}" class="button small">Delete</a>

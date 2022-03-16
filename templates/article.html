@@ -37,13 +37,16 @@
 										<li><a href="#" class="icon solid fa-comment">128</a></li> -->
 										<section class="comments">
 											<h2>Comments</h2>
-											<form action="">
+											<form action="add_comment" method="post">
+												{% csrf_token %}
 												<div class="row gtr-uniform">
+													<input type="hidden" name="post" value="{{ post.id }}"/>
+													<input type="hidden" name="name" value="{{ user.id }}"/>
 													<div class="col-9 col-12-xsmall">
-														<input type="text" id="demo-name"placeholder="Comment..." />
+														<input type="text" name="body" placeholder="Comment..." />
 													</div>
 													<div class="col-3 col-12-xsmall">
-														<input type="submit" id="demo-email" value="Add Comment"/>
+														<input type="submit" value="Add Comment"/>
 													</div>
 												</div>
 											</form>
@@ -51,9 +54,10 @@
 												No comments
 											{% else %}
 												{% for comment in post.comments.all %}
+												<div class="meta">
 													<strong>{{comment.name}} </strong> - {{comment.date_added}}
-													<br>
-													{{comment.body}}
+													<p>{{comment.body}}</p>
+												</div>													
 												{% endfor %}
 											{% endif %}
 										</section>

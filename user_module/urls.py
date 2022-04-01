@@ -1,6 +1,6 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern
-from .views import UserUpdateView
+from .views import UserUpdateView, ContactView
 from . import views
 
 urlpatterns=[
@@ -8,4 +8,5 @@ urlpatterns=[
 	path('validateUser', views.validateUser, name='userLogin'),
 	path('logout',views.logout_view,name='logout'),
 	path('update_profile', UserUpdateView.as_view(), name='update_profile'),
+	path('contact', ContactView.as_view(), name='contact'),
 ]

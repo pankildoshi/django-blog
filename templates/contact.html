@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="main">
+        <article class="post" style="margin: 0 10%;">
+            <h1>Contact Us</h1>
+            <form method="post">
+                {% csrf_token %} 
+                {{form.as_p}}
+                <div class="col-12">
+                    <ul class="actions">
+                        <li><input type="submit" value="Submit" /></li>
+                    </ul>
+                </div>
+            </form>
+        </article>
+    </div>
+{% endblock %}

@@ -8,6 +8,8 @@ from django.contrib.auth import logout
 from django.views import generic
 from django.urls import reverse_lazy
 from .forms import UserUpdateForm
+from django.views.generic import CreateView
+from .models import Contact
 # Create your views here.
 def login(request):
 
@@ -63,3 +65,9 @@ class UserUpdateView(generic.UpdateView):
 
 	def get_object(self):
 		return self.request.user
+
+class ContactView(CreateView):
+	model = Contact
+	fields = '__all__'
+	template_name = 'contact.html'
+	success_url = reverse_lazy('index')

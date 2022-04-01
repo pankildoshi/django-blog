@@ -28,15 +28,26 @@
 								</div>								
 								<footer>
 									<ul class="stats" style="margin-top: 30px;">
+										{% if user.is_authenticated %}
+										<!-- likes button -->
 										<form action="{% url 'like_post' post.pk %}" method="post">
 											{% csrf_token %}
-											<button type="submit" name="post_id" value="{{ post.id }}" class="button">
-												<i class=" icon solid fa-heart" style="margin: 2px; color: 2ebaae;"></i> 
-												{{ total_likes }}
-											</button> 
+											{% if liked %}
+												<button type="submit" name="post_id" value="{{ post.id }}">
+													Unlike
+													<i class=" icon solid fa-heart" style="margin: 2px;"></i> 
+													{{ total_likes }}
+												</button>
+											{% else %}
+												<button type="submit" name="post_id" value="{{ post.id }}">
+													Like
+													<i class=" icon solid fa-heart" style="margin: 2px;"></i> 
+													{{ total_likes }}
+												</button> 
+											{% endif %}
 										</form>
-										<!-- <li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li> -->
+
+										<!-- comment section -->
 										<section class="comments">
 											<h2>Comments</h2>
 											<form action="add_comment" method="post">
@@ -63,6 +74,30 @@
 												{% endfor %}
 											{% endif %}
 										</section>
+										{% else %}
+											<p>
+												<a href="{% url 'userLogin' %}">Login</a>
+												<small> <i> to like & comment</i> </small>
+											</p>
+											<button type="button">
+												Likes
+												<i class=" icon solid fa-heart" style="margin: 2px;"></i> 
+												{{ total_likes }}
+											</button>
+											<section class="comments" style="margin-top: 2rem;">
+												<h2>Comments</h2>
+												{% if not post.comments.all %}
+													No comments
+												{% else %}
+													{% for comment in post.comments.all %}
+													<div class="meta">
+														<strong>{{comment.name}} </strong> - {{comment.date_added}}
+														<p>{{comment.body}}</p>
+													</div>													
+													{% endfor %}
+												{% endif %}
+											</section>
+										{% endif %}
 									</ul>
 								</footer>
 							</article>

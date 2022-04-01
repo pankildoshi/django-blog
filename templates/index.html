@@ -30,13 +30,11 @@
 										<li><a href="{% url 'article' post.pk %}" class="button large">Continue Reading</a></li>
 									</ul>
 									<ul class="stats">
-										<form action="{% url 'index_like_post' post.pk %}" method="post">
-											{% csrf_token %}
-											<button type="submit" name="post_id" value="{{ post.id }}" class="button">
-												<i class=" icon solid fa-heart" style="margin-right: 2px; color: 2ebaae;"></i> 
+										<li>
+											<i class="fa fa-heart" style="color: #2ebaae; font-size: 12pt;">
 												{{ post.likes.all.count }}
-											</button> 
-										</form>
+											</i>												
+										</li>
 									</ul>
 								</footer>
 							</article>

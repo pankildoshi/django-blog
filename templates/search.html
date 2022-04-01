@@ -2,7 +2,8 @@
 {% block content %}
 
 <div class="main">
-{% for post in allPosts  %}
+    <h2>Search results</h2>
+    {% for post in allPosts  %}
     <article class="post">
         <header>
             <div class="title">
@@ -31,7 +32,7 @@
             </ul>
         </footer>
     </article>
-{% endfor %}
+    {% endfor %}
 </div>
 
 {% endblock %}

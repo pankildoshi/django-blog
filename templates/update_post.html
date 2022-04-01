@@ -7,21 +7,12 @@
                 <h1>Update Blog</h1>
                 <form method="post">
                     {% csrf_token %}
-                    <div class="row gtr-uniform">
-                        <div class="col-12">
-                            <input type="text" name="title" placeholder="Title" value="{{post.title}}" />
-                        </div>
-                        <div class="col-12">
-                            <input type="text" name="headline" placeholder="Headline" value="{{post.headline}}" />
-                        </div>
-                        <div class="col-12">
-                            <textarea name="content" placeholder="Content" cols="85" rows="6">{{post.content}}</textarea>
-                        </div>
-                        <div class="col-12">
-                            <ul class="actions">
-                                <li><input type="submit" value="Update" /></li>
-                            </ul>
-                        </div>
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Update" /></li>
+                        </ul>
                     </div>
                 </form>
             {% endif %}

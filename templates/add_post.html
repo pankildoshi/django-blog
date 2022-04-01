@@ -7,27 +7,22 @@
                 <h1>Create Blog</h1>
                 <form method="post">
                     {% csrf_token %}
-                    <div class="row gtr-uniform">
-                        <div class="col-12">
-                            <input type="text" name="title" placeholder="Title" />
-                        </div>
-                        <div class="col-12">
-                            <input type="text" name="headline" placeholder="Headline" />
-                        </div>
-                        <div class="col-12">
-                            <textarea name="content" placeholder="Content" cols="85" rows="6"></textarea>
-                        </div>
-                        <input type="hidden" name="author" value="{{user.id}}" />
-                        <div class="col-12">
-                            <ul class="actions">
-                                <li><input type="submit" value="Create" /></li>
-                                <li><input type="reset" value="Cancel" /></li>
-                            </ul>
-                        </div>
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Create" /></li>
+                            <li><input type="reset" value="Cancel" /></li>
+                        </ul>
                     </div>
                 </form>
             {% endif %}
         </article>        
     </div>
+
+    <script>
+        var author = "{{ user.id }}";
+        document.getElementById("author").value = author;
+    </script>
 
 {% endblock %}

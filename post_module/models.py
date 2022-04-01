@@ -1,17 +1,16 @@
-from operator import imod
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import date, datetime
+from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    headline = models.CharField(max_length=200, default='Headline')
-    content = models.TextField()
+    headline = models.CharField(max_length=200)
+    content = RichTextField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='blog_posts')
-
+ 
     def total_likes(self):
         return self.likes.count()
 

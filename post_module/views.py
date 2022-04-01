@@ -24,10 +24,7 @@ class Article(DetailView):
 class AddPost(CreateView):
     model = Post
     template_name = 'add_post.html'
-    fields = [
-        'title', 'headline', 'content', 'author'
-    ]
-    # form_class = PostForm
+    form_class = PostForm
 
 class AddComment(CreateView):
     model = Comment

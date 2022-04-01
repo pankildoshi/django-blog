@@ -20,5 +20,5 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('post_module.urls')),
-    path('user_module/', include('user_module.urls'))
+    path('user_module/', include('user_module.urls')),
 ]

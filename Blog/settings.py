@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'post_module',
     'user_module',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

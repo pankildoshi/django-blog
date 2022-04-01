@@ -68,15 +68,11 @@ def LikeView(request, pk):
         liked = True
     return HttpResponseRedirect(reverse('article', args=[str(pk)]))
 
-def IndexLikeView(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('index'))
-
 def login(request):
-    return render(request, 'login.html', {})
+    return render(request, 'login.html', {}) 
 
-# # Create your views here.
-# class PostView(ListView):
-#     model = Post
-#     template_html = 'index.html'
+def search(request):
+    query=request.GET['query']
+    allPosts= Post.objects.filter(title__icontains=query)
+    params={'allPosts': allPosts}
+    return render(request, 'search.html', params)

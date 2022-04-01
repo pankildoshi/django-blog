@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main">
+{% for post in allPosts  %}
+    <article class="post">
+        <header>
+            <div class="title">
+                <h2><a href=" {% url 'article' post.pk %} "> {{post.title}} </a></h2>
+                <p>{{post.headline}}</p>
+            </div>
+            <div class="meta">
+                <time class="published">{{post.post_date}}</time>
+                <a href="#" class="author"><span class="name">{{post.author.first_name}} {{post.author.last_name}}</span></a>
+            </div>
+        </header>
+        {% if post.featured_image %}
+        <span class="image featured"><img src="{{post.featured_image.url}}" alt=""  style="height: 400px;"/></span>
+        {% endif %}
+        <p> {{post.content|slice:":500"|safe}} </p>
+        <footer>
+            <ul class="actions">
+                <li><a href="{% url 'article' post.pk %}" class="button large">Continue Reading</a></li>
+            </ul>
+            <ul class="stats">
+                <li>
+                    <i class="fa fa-heart" style="color: #2ebaae; font-size: 12pt;">
+                        {{ post.likes.all.count }}
+                    </i>												
+                </li>
+            </ul>
+        </footer>
+    </article>
+{% endfor %}
+</div>
+
+{% endblock %}

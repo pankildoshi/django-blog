@@ -43,7 +43,7 @@
 							<ul>
 								<li class="search">
 									<a class="fa-search" href="#search">Search</a>
-									<form id="search" method="get" action="#">
+									<form id="search" method="get" action="{% url 'search' %}">
 										<input type="text" name="query" placeholder="Search" />
 									</form>
 								</li>
@@ -58,7 +58,7 @@
 					<section id="menu">
 						<!-- Search -->
 							<section>
-								<form class="search" method="get" action="#">
+								<form class="search" method="get" action="{% url 'search' %}">
 									<input type="text" name="query" placeholder="Search" />
 								</form>
 							</section>

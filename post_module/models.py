@@ -20,7 +20,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('index')
+        return reverse('article', args=[str(self.id)])
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
@@ -32,4 +32,4 @@ class Comment(models.Model):
         return '%s - %s' % (self.post.title, self.name)
 
     def get_absolute_url(self):
-        return reverse('index')
+        return reverse('article', args=[str(self.post.id)])

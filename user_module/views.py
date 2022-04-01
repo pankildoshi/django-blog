@@ -53,9 +53,12 @@ def validateUser(request):
 	else:
 		return render(request,"login.html")
 
-def logout_view(request):
+def logout(request):
     logout(request)
     return redirect('/')
+
+def about(request):
+	return render(request, 'about.html')
 
 class UserUpdateView(generic.UpdateView):
 	model = User

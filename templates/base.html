@@ -28,13 +28,13 @@
 							<ul>
 								{% if request.user.is_authenticated %}
 									<li><a href="{% url 'index' %}">Home</a></li>
-									<li><a href="#">About us</a></li>
+									<li><a href="{% url 'about' %}">About us</a></li>
 									<li><a href="{% url 'contact' %}">Contact us</a></li>
 									<li><a href="{% url 'profile' %}">My Profile</a></li>
 									<li><a href="{% url 'add_post' %}">Create Blog</a></li>
 								{% else %}
 									<li><a href="{% url 'index' %}">Home</a></li>
-									<li><a href="#">About us</a></li>
+									<li><a href="{% url 'about' %}">About us</a></li>
 									<li><a href="{% url 'contact' %}">Contact us</a></li>
 								{% endif %}
 							</ul>
@@ -63,19 +63,18 @@
 								</form>
 							</section>
 						
-						<!-- Links -->
-						
+						<!-- Links -->						
 						<section>
 							<ul class="links">
 								{% if request.user.is_authenticated %}
 									<li><a href="{% url 'index' %}">Home</a></li>
-									<li><a href="#">About us</a></li>
+									<li><a href="{% url 'about' %}">About us</a></li>
 									<li><a href="{% url 'contact' %}">Contact us</a></li>
 									<li><a href="{% url 'profile' %}">My Profile</a></li>
 									<li><a href="{% url 'add_post' %}">Create Blog</a></li>
 								{% else %}
 									<li><a href="{% url 'index' %}">Home</a></li>
-									<li><a href="#">About us</a></li>
+									<li><a href="{% url 'about' %}">About us</a></li>
 									<li><a href="{% url 'contact' %}">Contact us</a></li>
 								{% endif %}
 							</ul>

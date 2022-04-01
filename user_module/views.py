@@ -1,9 +1,13 @@
+from dataclasses import fields
 from django.shortcuts import render,redirect
-from django.contrib.auth.models import User,auth
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout
+from django.views import generic
+from django.urls import reverse_lazy
+from .forms import UserUpdateForm
 # Create your views here.
 def login(request):
 
@@ -12,7 +16,9 @@ def login(request):
 		email = request.POST['email']
 		pass1 = request.POST['pass1']
 		pass2 = request.POST['pass2']
-		
+		fname = request.POST['fname']
+		lname = request.POST['lname']
+
 		if pass1 == pass2:
 			if(User.objects.filter(username=username).exists()):
 				print("User name is not available")
@@ -20,6 +26,8 @@ def login(request):
 				print("Email is already taken")
 			else:
 				user=User.objects.create_user(username=username,password=pass1,email=email)
+				user.first_name = fname
+				user.last_name = lname
 				user.save()
 				print('User Created')
 		else:
@@ -46,3 +54,12 @@ def validateUser(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+class UserUpdateView(generic.UpdateView):
+	model = User
+	form_class = UserUpdateForm
+	template_name = 'update_profile.html'
+	success_url = reverse_lazy('index')
+
+	def get_object(self):
+		return self.request.user

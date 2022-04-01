@@ -37,7 +37,7 @@ class UpdatePost(UpdateView):
     model = Post
     template_name = 'update_post.html'
     fields = [
-        'title', 'headline', 'content'
+        'title', 'headline', 'content', 'featured_image'
     ]
 
 class DeletePost(DeleteView):

@@ -21,7 +21,9 @@
 										<a href="#" class="author"><span class="name">{{post.author.first_name}} {{post.author.last_name}}</span><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
 									</div>
 								</header>
-								<a href="#" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+								{% if post.featured_image %}
+								<span class="image featured"><img src="{{post.featured_image.url}}" alt=""  style="height: 400px;"/></span>
+								{% endif %}
 								<p> {{post.content|slice:":500"|safe}} </p>
 								<footer>
 									<ul class="actions">

@@ -1,14 +1,15 @@
-from dataclasses import fields
+from re import template
 from django.shortcuts import render,redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
-from django.contrib.auth import logout
-from django.views import generic
+from django.views.generic import UpdateView
 from django.urls import reverse_lazy
 from .forms import UserUpdateForm
 from django.views.generic import CreateView
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from .models import Contact
 # Create your views here.
 def login(request):
@@ -54,13 +55,13 @@ def validateUser(request):
 		return render(request,"login.html")
 
 def logout(request):
-    logout(request)
+    auth.logout(request)
     return redirect('/')
 
 def about(request):
 	return render(request, 'about.html')
 
-class UserUpdateView(generic.UpdateView):
+class UserUpdateView(UpdateView):
 	model = User
 	form_class = UserUpdateForm
 	template_name = 'update_profile.html'
@@ -68,6 +69,12 @@ class UserUpdateView(generic.UpdateView):
 
 	def get_object(self):
 		return self.request.user
+
+class PasswordUpdateView(PasswordChangeView):
+	model = User
+	form_class = PasswordChangeForm
+	template_name = 'update_password.html'
+	success_url = reverse_lazy('profile')
 
 class ContactView(CreateView):
 	model = Contact

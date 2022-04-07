@@ -11,6 +11,7 @@
 				<h3>
                     User Details: {{user.username}} 
                     <a href="{% url 'update_profile' %}"><i class="icon solid fa-pen" title="Edit Profile"></i></a>
+                    <a href="{% url 'update_password' %}"><i class="icon solid fa-key" title="Change Password"></i></a>
                 </h3>
 				<ul class="alt">
 					<li>Name : {{user.first_name}} {{user.last_name}}</li>
@@ -31,20 +32,20 @@
 				</thead>
 					<tbody>
                         {% if request.user.is_authenticated %}
-                            {% for post in object_list %}
-                                {% if user.id == post.author.id %}
-                                <tr>
-                                    <td><a href="{% url 'article' post.pk %}">{{post.title}}</a></td>
-                                    <td>{{post.post_date}}</td>
-                                    <td>{{ post.likes.all.count }}</td>
-                                    <td>{{ post.comments.all.count }}</td>
-                                    <td>
-                                        <a href="{% url 'update_post' post.pk %}" class="button small">Update</a>
-                                        <a href="{% url 'delete_post' post.pk %}" class="button small">Delete</a>
-                                    </td>
-                                </tr>
-                                {% endif %}
-                            {% endfor %}
+                                {% for post in object_list %}
+                                    {% if user.id == post.author.id %}
+                                    <tr>
+                                        <td><a href="{% url 'article' post.pk %}">{{post.title}}</a></td>
+                                        <td>{{post.post_date}}</td>
+                                        <td>{{ post.likes.all.count }}</td>
+                                        <td>{{ post.comments.all.count }}</td>
+                                        <td>
+                                            <a href="{% url 'update_post' post.pk %}" class="button small">Update</a>
+                                            <a href="{% url 'delete_post' post.pk %}" class="button small">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% endif %}                                    
+                                {% endfor %}
                         {% endif %}
 					</tbody>
 				</table>

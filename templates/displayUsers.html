@@ -101,7 +101,6 @@
   <div class="header-right">
     <a href="{% url 'adminRedirect' %}">Blogs</a>
     <a href="{% url 'userDisplay' %}">Users</a>
-    <a href="#about">User Activity</a>
   </div>
 </div>
 <br><br>
@@ -127,7 +126,16 @@
 		  </tr>
 		  {%endfor%}
 		</table>
-		
+		<br><hr><br>
+	  	<center style="font-size: 20px;">Ban User</center>
+	  	<br>
+	  	<form action="{% url 'banUser' %}" method="post">
+	  		<center>
+	  		{% csrf_token %}
+	  		<input type="number" name="id" placeholder="Enter ID of User">
+	  		<input type="Submit" value="Delete">
+	  		</center>
+	  	</form>
   	<script>
 		var acc = document.getElementsByClassName("accordion");
 		var i;

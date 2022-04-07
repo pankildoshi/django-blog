@@ -39,3 +39,12 @@ def deleteBlog(request):
         return HttpResponseRedirect('adminHome')
     else:
         return render(request,"adminHome.html")
+
+def banUser(request):
+    if(request.method == "POST"):
+        userId = request.POST['id']
+        p = get_object_or_404(User, id=userId)
+        p.delete()
+        return HttpResponseRedirect('displayUsers')
+    else:
+        return render(request,"displayUsers.html")

@@ -87,9 +87,8 @@
 	<div class="header">
   <a href="#default" class="logo">Admin Panel</a>
   <div class="header-right">
-    <a href="#home">Blogs</a>
+    <a href="{% url 'adminRedirect' %}">Blogs</a>
     <a href="{% url 'userDisplay' %}">Users</a>
-    <a href="#about">User Activity</a>
   </div>
 </div>
 <br><br>
@@ -99,10 +98,9 @@
 	{% for userBlog in b %}
 	<button class="accordion">Blog Id:- {{userBlog.id}} || Title :- {{userBlog.title}} || Head line :- {{userBlog.headline}}</button>
 		<div class="panel">
-  			{{userBlog.content}}<br>
+			Content :- {{userBlog.content|safe}}<br>
   			Author Name :- {{userBlog.author}}<br>
   			Date :- {{userBlog.post_date}}<br>
-  			Likes :- {{userBlog.likes}}
 		</div>
   	{%endfor%}
 
